@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import { Spline_Sans } from "next/font/google";
+import { Poppins } from "next/font/google"; // Back to Poppins for soft look
 import "./globals.css";
 
-const splineSans = Spline_Sans({
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-spline-sans",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-poppins",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -19,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={splineSans.variable}>{children}</body>
+      <body className={poppins.variable}>{children}</body>
     </html>
   );
 }
