@@ -229,14 +229,24 @@ export default function ProfilePage() {
             boxShadow: "0 4px 20px rgba(0,0,0,0.02)",
           }}
         >
-          <MenuRow icon="📢" label="공지사항" />
-          <MenuRow icon="❓" label="자주 묻는 질문" />
-          <MenuRow icon="💬" label="1:1 문의하기" />
+          <Link href="/profile/notices" style={{ textDecoration: "none" }}>
+            <MenuRow icon="📢" label="공지사항" />
+          </Link>
+          <Link href="/profile/faq" style={{ textDecoration: "none" }}>
+            <MenuRow icon="❓" label="자주 묻는 질문" />
+          </Link>
+          <Link href="/profile/inquiry" style={{ textDecoration: "none" }}>
+            <MenuRow icon="💬" label="1:1 문의하기" />
+          </Link>
           <div
             style={{ height: "1px", background: "#F3F4F6", margin: "8px 24px" }}
           ></div>
-          <MenuRow icon="⚙️" label="앱 설정" />
-          <MenuRow icon="🔒" label="개인정보 처리방침" />
+          <Link href="/profile/settings" style={{ textDecoration: "none" }}>
+            <MenuRow icon="⚙️" label="앱 설정" />
+          </Link>
+          <Link href="/profile/privacy" style={{ textDecoration: "none" }}>
+            <MenuRow icon="🔒" label="개인정보 처리방침" />
+          </Link>
         </div>
         <div
           style={{

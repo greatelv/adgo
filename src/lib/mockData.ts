@@ -171,3 +171,31 @@ export const MOCK_QUESTS: Quest[] = [
 export const getQuestById = (id: string): Quest | undefined => {
   return MOCK_QUESTS.find((q) => q.id === id);
 };
+
+export const MOCK_NOTICES = [
+  { id: 1, title: "[공지] Adgo 정식 서비스 오픈 안내", date: "2024.04.01" },
+  {
+    id: 2,
+    title: "[이벤트] 신규 가입자 3일 무제한 패스 지급!",
+    date: "2024.04.05",
+  },
+  { id: 3, title: "[업데이트] 다크 모드 지원 예정 안내", date: "2024.04.10" },
+];
+
+export const MOCK_FAQ = [
+  {
+    id: 1,
+    question: "Q. 포인트는 언제 지급되나요?",
+    answer: "퀘스트 완료 후 검수 기간(최대 24시간) 내에 지급됩니다.",
+  },
+  {
+    id: 2,
+    question: "Q. 출금 신청은 얼마부터 가능한가요?",
+    answer: "최소 10,000 P 부터 1,000 P 단위로 신청 가능합니다.",
+  },
+  {
+    id: 3,
+    question: "Q. 퀘스트 참여 횟수에 제한이 있나요?",
+    answer: "아니요, 오픈된 퀘스트는 제한 없이 참여하실 수 있습니다!",
+  },
+];

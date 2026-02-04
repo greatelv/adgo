@@ -27,11 +27,9 @@ export default function Home() {
       {/* Greeting Section */}
       <section style={{ padding: "0 24px 32px" }}>
         <h1 className="hero-title">
-          오늘의 <span className="highlight">퀘스트</span>가<br />
-          <span className="highlight-text">{MOCK_QUESTS.length}개</span>{" "}
-          도착했어요! 🚀
+          오늘의 <span className="highlight">퀘스트</span>{" "}
+          <span className="highlight-text">{MOCK_QUESTS.length}개</span> 🚀
         </h1>
-        <p className="hero-subtitle">남는 시간에 간단하게 수익을 올려보세요.</p>
       </section>
 
       {/* Filter Chips */}
