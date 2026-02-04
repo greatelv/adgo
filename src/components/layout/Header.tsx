@@ -1,15 +1,22 @@
+"use client";
+
 import React from "react";
-import { MenuIcon, NotificationIcon } from "../ui/Icons";
+import Link from "next/link";
+import { NotificationIcon } from "../ui/Icons";
 
 export default function Header() {
   return (
     <header className="header-section">
-      <MenuIcon />
+      <div style={{ width: "24px" }}></div>{" "}
+      {/* Placeholder for balance alignment if needed, or just remove */}
       <div
         style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          marginLeft: "auto",
+          marginRight: "auto",
+          transform: "translateX(-12px)", // Visual centering trick since notification icon is on right
         }}
       >
         <span
@@ -27,7 +34,9 @@ export default function Header() {
           35,000 P
         </span>
       </div>
-      <NotificationIcon />
+      <Link href="/notifications">
+        <NotificationIcon />
+      </Link>
     </header>
   );
 }

@@ -2,43 +2,67 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { TaskIcon1 } from "../../../components/ui/Icons";
-import ApplicationModal from "../../../components/quest/ApplicationModal"; // Import Modal
-
-// Mock Data for MVP (This would come from DB/API later)
-const MOCK_QUEST = {
-  id: "1",
-  title: "신규 카페 오픈 블로그 리뷰",
-  category: "블로그",
-  reward: "5,000 P",
-  deadline: "2024. 04. 20 마감",
-  recruitStatus: "3/10명 지원중",
-  description: `
-    <p>안녕하세요! 해운대 근처에 새로 오픈한 '오션브리즈' 카페입니다.</p>
-    <p>오픈 기념으로 감성적인 블로그 리뷰를 작성해주실 서포터님을 찾습니다.</p>
-    <br/>
-    <div style="background: #F3F4F6; padding: 16px; border-radius: 12px; margin: 16px 0;">
-      <h3 style="margin: 0 0 12px 0; color: #4F46E5; font-size: 1.1rem;">📸 필수 포함 사항</h3>
-      <ul style="padding-left: 20px; list-style-type: disc; margin: 0;">
-        <li style="margin-bottom: 8px;">매장 내외부 인테리어 사진 3장 이상</li>
-        <li style="margin-bottom: 8px;">시그니처 메뉴(오션 라떼) 사진 2장 이상</li>
-        <li>지도 위치 첨부 필수</li>
-      </ul>
-    </div>
-    <div style="margin-top: 24px;">
-        <h3 style="margin-bottom: 8px; color: #DC2626; font-size: 1.1rem;">⚠️ 유의 사항</h3>
-        <p style="color: #4B5563;">성의 없는 글이나 사진 재사용은 반려될 수 있습니다.</p>
-    </div>
-  `,
-  tags: ["#해운대카페", "#오션브리즈", "#감성카페"],
-};
+import { useParams, useRouter } from "next/navigation";
+import { TaskIcon1, TaskIcon2, TaskIcon3 } from "../../../components/ui/Icons";
+import ApplicationModal from "../../../components/quest/ApplicationModal";
+import { getQuestById } from "../../../lib/mockData";
 
 export default function QuestDetail() {
+  const params = useParams();
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Fetch quest data based on ID
+  const questId = typeof params.id === "string" ? params.id : "";
+  const quest = getQuestById(questId);
+
+  // Handle case where quest is not found
+  if (!quest) {
+    return (
+      <div
+        className="container"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100vh",
+        }}
+      >
+        <h2
+          style={{
+            fontSize: "1.2rem",
+            fontWeight: "700",
+            marginBottom: "16px",
+          }}
+        >
+          퀘스트를 찾을 수 없습니다.
+        </h2>
+        <button
+          onClick={() => router.push("/")}
+          style={{
+            padding: "10px 20px",
+            background: "#4F46E5",
+            color: "white",
+            borderRadius: "8px",
+            border: "none",
+            fontWeight: "600",
+          }}
+        >
+          메인으로 돌아가기
+        </button>
+      </div>
+    );
+  }
+
+  // Icon logic
+  let IconComponent = <TaskIcon1 />;
+  if (quest.category === "SNS") IconComponent = <TaskIcon2 />;
+  if (quest.category === "기타") IconComponent = <TaskIcon3 />;
 
   return (
     <main className="container" style={{ paddingBottom: "120px" }}>
-      {/* Global Style for content readability (Scoped via style tag for now) */}
+      {/* Global Style for content readability */}
       <style jsx>{`
         .content-area p {
           margin-bottom: 12px;
@@ -71,7 +95,7 @@ export default function QuestDetail() {
           position: "sticky",
           top: 0,
           zIndex: 40,
-          background: "rgba(243, 232, 255, 0.7)", // Transparent Purple Tint
+          background: "rgba(243, 232, 255, 0.7)",
           backdropFilter: "blur(10px)",
           borderBottom: "1px solid rgba(255,255,255,0.3)",
         }}
@@ -121,17 +145,17 @@ export default function QuestDetail() {
             style={{
               width: "72px",
               height: "72px",
-              background: "#E0E7FF",
-              color: "#4F46E5",
+              background: quest.colors.iconBg,
+              color: quest.colors.iconColor,
               borderRadius: "22px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              boxShadow: "0 8px 16px -4px rgba(79, 70, 229, 0.2)",
+              boxShadow: `0 8px 16px -4px ${quest.colors.iconColor}33`, // Dynamic shadow color
               flexShrink: 0,
             }}
           >
-            <TaskIcon1 />
+            {IconComponent}
           </div>
 
           <div style={{ flex: 1, paddingTop: "4px" }}>
@@ -139,8 +163,8 @@ export default function QuestDetail() {
               style={{
                 display: "inline-block",
                 padding: "6px 12px",
-                background: "#EEF2FF",
-                color: "#4F46E5",
+                background: quest.colors.priceBg,
+                color: quest.colors.priceColor,
                 borderRadius: "100px",
                 fontSize: "0.8rem",
                 fontWeight: "700",
@@ -148,7 +172,7 @@ export default function QuestDetail() {
                 letterSpacing: "0.5px",
               }}
             >
-              {MOCK_QUEST.category}
+              {quest.category}
             </div>
             <h1
               style={{
@@ -160,7 +184,7 @@ export default function QuestDetail() {
                 letterSpacing: "-0.5px",
               }}
             >
-              {MOCK_QUEST.title}
+              {quest.title}
             </h1>
           </div>
         </div>
@@ -195,7 +219,7 @@ export default function QuestDetail() {
                 color: "#4F46E5",
               }}
             >
-              {MOCK_QUEST.reward}
+              {quest.reward}
             </div>
           </div>
           <div
@@ -217,7 +241,7 @@ export default function QuestDetail() {
                 fontWeight: "500",
               }}
             >
-              모집 현황
+              {quest.status === "URGENT" ? "마감 임박" : "모집 현황"}
             </div>
             <div
               style={{
@@ -226,7 +250,7 @@ export default function QuestDetail() {
                 color: "#111827",
               }}
             >
-              3/10
+              {quest.recruitStatus.split(" ")[0]} {/* "3/10" part */}
               <span
                 style={{
                   fontSize: "0.95rem",
@@ -235,14 +259,15 @@ export default function QuestDetail() {
                   marginLeft: "2px",
                 }}
               >
-                명
+                {quest.recruitStatus.split(" ").slice(1).join(" ")}{" "}
+                {/* "명 지원중" part */}
               </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Tabs (Underline Style) */}
+      {/* Tabs */}
       <div
         style={{
           padding: "0 24px",
@@ -282,7 +307,7 @@ export default function QuestDetail() {
         className="content-area"
         style={{ padding: "0 24px 24px", color: "#374151" }}
       >
-        <div dangerouslySetInnerHTML={{ __html: MOCK_QUEST.description }} />
+        <div dangerouslySetInnerHTML={{ __html: quest.description }} />
 
         <div
           style={{
@@ -292,7 +317,7 @@ export default function QuestDetail() {
             gap: "8px",
           }}
         >
-          {MOCK_QUEST.tags.map((tag) => (
+          {quest.tags.map((tag) => (
             <span
               key={tag}
               style={{
@@ -311,19 +336,19 @@ export default function QuestDetail() {
         </div>
       </section>
 
-      {/* Bottom Action Bar (Fixed & Glassy) */}
+      {/* Bottom Action Bar */}
       <div
         style={{
           position: "fixed",
           bottom: 0,
           left: 0,
           right: 0,
-          background: "rgba(255, 255, 255, 0.85)", // More translucent
-          backdropFilter: "blur(12px)", // Strong blur
+          background: "rgba(255, 255, 255, 0.85)",
+          backdropFilter: "blur(12px)",
           padding: "16px 24px 34px",
           borderTopLeftRadius: "24px",
           borderTopRightRadius: "24px",
-          boxShadow: "0 -10px 40px rgba(0,0,0,0.08)", // Softer, larger shadow
+          boxShadow: "0 -10px 40px rgba(0,0,0,0.08)",
           borderTop: "1px solid rgba(255,255,255,0.5)",
           display: "flex",
           gap: "12px",
@@ -348,30 +373,50 @@ export default function QuestDetail() {
         >
           문의하기
         </button>
-        <button
-          onClick={() => setIsModalOpen(true)}
-          style={{
-            flex: 2,
-            padding: "16px",
-            borderRadius: "16px",
-            border: "none",
-            background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
-            color: "white",
-            fontWeight: "700",
-            fontSize: "1rem",
-            boxShadow: "0 8px 20px -4px rgba(99, 102, 241, 0.4)",
-            cursor: "pointer",
-            transition: "transform 0.2s",
-          }}
-        >
-          지원하기
-        </button>
+
+        {quest.status === "CLOSED" ? (
+          <button
+            disabled
+            style={{
+              flex: 2,
+              padding: "16px",
+              borderRadius: "16px",
+              border: "none",
+              background: "#E5E7EB",
+              color: "#9CA3AF",
+              fontWeight: "700",
+              fontSize: "1rem",
+              cursor: "not-allowed",
+            }}
+          >
+            모집 마감
+          </button>
+        ) : (
+          <button
+            onClick={() => setIsModalOpen(true)}
+            style={{
+              flex: 2,
+              padding: "16px",
+              borderRadius: "16px",
+              border: "none",
+              background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
+              color: "white",
+              fontWeight: "700",
+              fontSize: "1rem",
+              boxShadow: "0 8px 20px -4px rgba(99, 102, 241, 0.4)",
+              cursor: "pointer",
+              transition: "transform 0.2s",
+            }}
+          >
+            지원하기
+          </button>
+        )}
       </div>
 
       <ApplicationModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        questTitle={MOCK_QUEST.title}
+        questTitle={quest.title}
       />
     </main>
   );

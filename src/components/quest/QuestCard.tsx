@@ -2,7 +2,10 @@ import React, { ReactNode } from "react";
 
 interface QuestCardProps {
   title: string;
-  subtitle: string;
+  // subtitle is replaced by tags logic
+  platform?: string;
+  questType?: string;
+
   icon: ReactNode;
   price: string;
   iconBg: string;
@@ -21,7 +24,8 @@ interface QuestCardProps {
 
 export default function QuestCard({
   title,
-  subtitle,
+  platform,
+  questType,
   icon,
   price,
   iconBg,
@@ -36,25 +40,93 @@ export default function QuestCard({
 }: QuestCardProps) {
   return (
     <div className="task-card" style={isClosed ? { opacity: 0.6 } : {}}>
-      <div className="card-top">
+      {/* 1. Top Row: Icon + Title (2 lines) */}
+      <div style={{ display: "flex", gap: "16px", marginBottom: "16px" }}>
+        {/* Icon (Height matches 2 lines of title approx 48-50px) */}
         <div
           className="icon-box"
-          style={{ background: iconBg, color: iconColor }}
+          style={{
+            background: iconBg,
+            color: iconColor,
+            width: "52px",
+            height: "52px",
+            fontSize: "1.5rem",
+            flexShrink: 0,
+            borderRadius: "16px",
+          }}
         >
           {icon}
         </div>
-        <div style={{ flex: 1 }}>
-          <div
-            className="card-title"
-            style={isClosed ? { color: "#6B7280" } : {}}
-          >
-            {title}
-          </div>
-          <div className="card-subtitle">{subtitle}</div>
+
+        {/* Title (Max 2 lines) */}
+        <div
+          className="card-title"
+          style={{
+            margin: 0,
+            flex: 1,
+            display: "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            lineHeight: "1.4",
+            height: "fit-content",
+            maxHeight: "3.2rem",
+            alignSelf: "center",
+            ...(isClosed ? { color: "#6B7280" } : {}),
+          }}
+        >
+          {title}
         </div>
+      </div>
+
+      {/* 2. Bottom Row: Tags + Price */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: isClosed ? "0" : "16px",
+        }}
+      >
+        <div style={{ display: "flex", gap: "6px" }}>
+          {platform && (
+            <span
+              style={{
+                fontSize: "0.75rem",
+                fontWeight: "600",
+                color: "#4B5563",
+                background: "#F3F4F6",
+                padding: "4px 8px",
+                borderRadius: "6px",
+              }}
+            >
+              {platform}
+            </span>
+          )}
+          {questType && (
+            <span
+              style={{
+                fontSize: "0.75rem",
+                fontWeight: "600",
+                color: "#6D28D9",
+                background: "#EDE9FE", // Light purple
+                padding: "4px 8px",
+                borderRadius: "6px",
+              }}
+            >
+              {questType}
+            </span>
+          )}
+        </div>
+
         <div
           className="price-tag"
-          style={{ background: priceBg, color: priceColor }}
+          style={{
+            background: priceBg,
+            color: priceColor,
+            whiteSpace: "nowrap",
+          }}
         >
           {price}
         </div>

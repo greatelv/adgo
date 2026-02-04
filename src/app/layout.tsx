@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   description: "Crowdsourcing Marketing Platform",
 };
 
+import GlobalBackground from "../components/layout/GlobalBackground";
+
+// ...
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -21,7 +25,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={poppins.variable}>{children}</body>
+      <body className={poppins.variable}>
+        <GlobalBackground />
+        {children}
+      </body>
     </html>
   );
 }

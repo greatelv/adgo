@@ -1,112 +1,132 @@
-"use strict";
+"use client";
 
 import React from "react";
 import Link from "next/link";
 import Header from "../components/layout/Header";
 import BottomNav from "../components/layout/BottomNav";
-import FAB from "../components/ui/FAB";
+
 import FilterChip from "../components/ui/FilterChip";
 import QuestCard from "../components/quest/QuestCard";
 import { TaskIcon1, TaskIcon2, TaskIcon3 } from "../components/ui/Icons";
+import { MOCK_QUESTS } from "../lib/mockData";
 
 export default function Home() {
+  const [activeCategory, setActiveCategory] = React.useState("전체");
+
+  const filteredQuests = MOCK_QUESTS.filter((quest) => {
+    if (activeCategory === "전체") return true;
+    return quest.category === activeCategory;
+  });
+
   return (
-    <main className="container">
-      {/* Background Ornaments */}
-      <div className="bg-blob blob-1"></div>
-      <div className="bg-blob blob-2"></div>
-      <div className="bg-blob blob-3"></div>
+    <main className="container" style={{ paddingBottom: "100px" }}>
+      {/* Background Blobs (Premium Vibe) */}
 
       <Header />
 
-      {/* Greeting Area */}
-      <section style={{ padding: "10px 24px 24px" }}>
-        <h1
-          style={{
-            fontSize: "1.75rem",
-            fontWeight: "800",
-            lineHeight: "1.2",
-            color: "#111827",
-          }}
-        >
-          오늘의 퀘스트 <br />
-          <span style={{ color: "var(--primary-solid)" }}>준비되셨나요?</span>
+      {/* Greeting Section */}
+      <section style={{ padding: "0 24px 32px" }}>
+        <h1 className="hero-title">
+          오늘의 <span className="highlight">퀘스트</span>가<br />
+          <span className="highlight-text">{MOCK_QUESTS.length}개</span>{" "}
+          도착했어요! 🚀
         </h1>
+        <p className="hero-subtitle">남는 시간에 간단하게 수익을 올려보세요.</p>
       </section>
 
-      {/* Filters (Pill shaped) */}
-      <section className="filter-scroll">
-        <FilterChip label="전체" active />
-        <FilterChip label="🔥 고수익" />
-        <FilterChip label="📱 SNS" />
-        <FilterChip label="📝 블로그" />
-      </section>
+      {/* Filter Chips */}
+      <h2
+        style={{
+          fontSize: "1.05rem",
+          fontWeight: "700",
+          color: "#374151",
+          margin: "0 0 12px",
+          padding: "0 24px",
+        }}
+      >
+        어디서 활동하시나요?
+      </h2>
+      <div
+        style={{
+          display: "flex",
+          gap: "12px",
+          overflowX: "auto",
+          padding: "0 24px 24px",
+          scrollbarWidth: "none",
+        }}
+      >
+        {[
+          { id: "전체", label: "전체" },
+          { id: "스토어", label: "🛍️ 스토어" },
+          { id: "SNS", label: "💬 SNS" },
+          { id: "웹", label: "🌐 웹" },
+          { id: "기타", label: "⚡️ 기타" },
+        ].map((cat) => (
+          <FilterChip
+            key={cat.id}
+            label={cat.label}
+            active={activeCategory === cat.id}
+            onClick={() => setActiveCategory(cat.id)}
+          />
+        ))}
+      </div>
 
       {/* Task List */}
       <section style={{ paddingBottom: "120px" }}>
-        {/* Card 1 */}
-        <Link
-          href="/quests/1"
-          style={{ textDecoration: "none", display: "block" }}
-        >
-          <QuestCard
-            title="신규 카페 오픈 블로그 리뷰"
-            subtitle="사진 5장 이상 필수 • 2시간 전"
-            icon={<TaskIcon1 />}
-            price="5,000 P"
-            iconBg="#E0E7FF"
-            iconColor="#4F46E5"
-            priceBg="#EEF2FF"
-            priceColor="#4F46E5"
-            progressLabel="모집 현황"
-            progressValue="30%"
-            progressGradient="var(--primary-gradient)"
-          />
-        </Link>
+        {filteredQuests.length > 0 ? (
+          filteredQuests.map((quest) => {
+            // Icon mapping logic
+            let IconComponent = <TaskIcon1 />;
+            if (quest.category === "SNS") IconComponent = <TaskIcon2 />;
+            if (
+              quest.status === "CLOSED" ||
+              quest.category === "기타" ||
+              quest.category === "웹"
+            )
+              IconComponent = <TaskIcon3 />;
 
-        {/* Card 2 */}
-        <Link
-          href="/quests/1"
-          style={{ textDecoration: "none", display: "block" }}
-        >
-          <QuestCard
-            title="에너지 드링크 인스타 스토리"
-            subtitle="@energy_boost 태그 • 긴급"
-            icon={<TaskIcon2 />}
-            price="3,000 P"
-            iconBg="#FCE7F3"
-            iconColor="#EC4899"
-            priceBg="#FFF1F2"
-            priceColor="#BE123C"
-            progressLabel="마감 임박"
-            progressValue="90%"
-            progressValueColor="#EC4899"
-            progressGradient="var(--secondary-gradient)"
-          />
-        </Link>
-
-        {/* Card 3 (Opacity) */}
-        <Link
-          href="/quests/1"
-          style={{ textDecoration: "none", display: "block" }}
-        >
-          <QuestCard
-            title="앱스토어 별점 평가"
-            subtitle="간단 리뷰 작성"
-            icon={<TaskIcon3 />}
-            price="마감"
-            iconBg="#F3F4F6"
-            iconColor="#9CA3AF"
-            priceBg="#F3F4F6"
-            priceColor="#9CA3AF"
-            progressLabel=""
-            progressValue=""
-            isClosed={true}
-          />
-        </Link>
+            return (
+              <Link
+                key={quest.id}
+                href={`/quests/${quest.id}`}
+                style={{ textDecoration: "none", display: "block" }}
+              >
+                <QuestCard
+                  title={quest.title}
+                  platform={quest.platform}
+                  questType={quest.questType}
+                  icon={IconComponent}
+                  price={quest.reward}
+                  iconBg={quest.colors.iconBg}
+                  iconColor={quest.colors.iconColor}
+                  priceBg={quest.colors.priceBg}
+                  priceColor={quest.colors.priceColor}
+                  progressLabel={
+                    quest.status === "CLOSED"
+                      ? ""
+                      : quest.status === "URGENT"
+                        ? "마감 임박"
+                        : "모집 현황"
+                  }
+                  progressValue={quest.progressValue || ""}
+                  progressValueColor={
+                    quest.status === "URGENT" ? "#EC4899" : undefined
+                  }
+                  progressGradient={quest.colors.progressGradient}
+                  isClosed={quest.status === "CLOSED"}
+                />
+              </Link>
+            );
+          })
+        ) : (
+          <div
+            style={{ textAlign: "center", padding: "40px", color: "#9CA3AF" }}
+          >
+            해당하는 퀘스트가 없습니다. 😅
+          </div>
+        )}
       </section>
 
-      <FAB />
       <BottomNav />
     </main>
   );
