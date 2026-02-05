@@ -6,10 +6,12 @@ import { useParams, useRouter } from "next/navigation";
 import { TaskIcon1, TaskIcon2, TaskIcon3 } from "../../../components/ui/Icons";
 import ApplicationModal from "../../../components/quest/ApplicationModal";
 import { getQuestById } from "../../../lib/mockData";
+import { useAuth } from "../../../context/AuthContext";
 
 export default function QuestDetail() {
   const params = useParams();
   const router = useRouter();
+  const { isLoggedIn } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Fetch quest data based on ID
@@ -393,7 +395,13 @@ export default function QuestDetail() {
           </button>
         ) : (
           <button
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => {
+              if (isLoggedIn) {
+                setIsModalOpen(true);
+              } else {
+                router.push(`/login?returnUrl=/quests/${quest.id}`);
+              }
+            }}
             style={{
               flex: 2,
               padding: "16px",

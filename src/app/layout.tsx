@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 };
 
 import GlobalBackground from "../components/layout/GlobalBackground";
+import { AuthProvider } from "../context/AuthContext";
 
 // ...
 
@@ -26,8 +27,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={poppins.variable}>
-        <GlobalBackground />
-        {children}
+        <AuthProvider>
+          <GlobalBackground />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

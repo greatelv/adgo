@@ -26,7 +26,7 @@ export default function ProfilePage() {
   // Filter only 'OPEN' quests as 'In Progress' for demo
   const myQuests = MOCK_QUESTS.filter(
     (q) => q.status === "URGENT" || q.id === "1",
-  ).slice(0, 2);
+  );
 
   return (
     <main className="container" style={{ paddingBottom: "100px" }}>
@@ -181,16 +181,6 @@ export default function ProfilePage() {
           >
             진행 중인 퀘스트
           </h3>
-          <span
-            style={{
-              fontSize: "0.85rem",
-              color: "#4F46E5",
-              fontWeight: "600",
-              cursor: "pointer",
-            }}
-          >
-            전체보기
-          </span>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
