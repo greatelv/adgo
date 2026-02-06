@@ -173,7 +173,7 @@ export const getQuestById = (id: string): Quest | undefined => {
 };
 
 export const MOCK_NOTICES = [
-  { id: 1, title: "[공지] Adgo 정식 서비스 오픈 안내", date: "2024.04.01" },
+  { id: 1, title: "[공지] 플랫폼 정식 서비스 오픈 안내", date: "2024.04.01" },
   {
     id: 2,
     title: "[이벤트] 신규 가입자 3일 무제한 패스 지급!",

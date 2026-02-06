@@ -10,12 +10,13 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Adgo - Gamified Marketing",
+  title: "Gamified Marketing Platform",
   description: "Crowdsourcing Marketing Platform",
 };
 
 import GlobalBackground from "../components/layout/GlobalBackground";
 import { AuthProvider } from "../context/AuthContext";
+import { ToastProvider } from "../context/ToastContext";
 
 // ...
 
@@ -28,8 +29,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={poppins.variable}>
         <AuthProvider>
-          <GlobalBackground />
-          {children}
+          <ToastProvider>
+            <GlobalBackground />
+            {children}
+          </ToastProvider>
         </AuthProvider>
       </body>
     </html>

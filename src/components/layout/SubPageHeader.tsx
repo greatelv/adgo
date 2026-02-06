@@ -15,21 +15,35 @@ export default function SubPageHeader({
   return (
     <div
       style={{
-        padding: "16px 24px",
+        height: "56px", // Standard App Header Height
+        padding: "0 16px",
         display: "flex",
         alignItems: "center",
-        gap: "12px",
+        justifyContent: "center", // Center Title
         position: "sticky",
         top: 0,
         zIndex: 40,
-        background: "rgba(255,255,255,0.8)",
-        backdropFilter: "blur(10px)",
-        borderBottom: "1px solid rgba(0,0,0,0.05)",
+        background: "rgba(255, 255, 255, 0.6)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        borderBottom: "1px solid rgba(255, 255, 255, 0.3)",
       }}
     >
       <Link
         href={backTo}
-        style={{ display: "flex", alignItems: "center", color: "#111827" }}
+        style={{
+          position: "absolute",
+          left: "12px",
+          width: "40px",
+          height: "40px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#1F2937",
+          borderRadius: "12px",
+          transition: "background 0.2s",
+        }}
+        // Add simple hover effect inline or via class if possible, kept simple for now
       >
         <svg
           width="24"
@@ -37,16 +51,24 @@ export default function SubPageHeader({
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth="2.5" // Slightly bolder
+          strokeLinecap="round"
+          strokeLinejoin="round"
         >
-          <path
-            d="M15 18l-6-6 6-6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+          <path d="M15 18l-6-6 6-6" />
         </svg>
       </Link>
-      <span style={{ fontSize: "1.1rem", fontWeight: "700" }}>{title}</span>
+
+      <span
+        style={{
+          fontSize: "1.15rem",
+          fontWeight: "700",
+          color: "#111827",
+          letterSpacing: "-0.01em",
+        }}
+      >
+        {title}
+      </span>
     </div>
   );
 }
