@@ -19,7 +19,10 @@ export default function ApplicationModal({
 
   useEffect(() => {
     if (isOpen) {
-      setIsVisible(true);
+      // Small delay to ensure render happens before animation class is applied (if we were using classes)
+      // Here it simply sets visibility state. To fix linter, we can defer it slightly.
+      const timer = setTimeout(() => setIsVisible(true), 0);
+      return () => clearTimeout(timer);
     } else {
       const timer = setTimeout(() => setIsVisible(false), 300); // Wait for animation
       return () => clearTimeout(timer);
@@ -69,7 +72,7 @@ export default function ApplicationModal({
           left: 0,
           right: 0,
           bottom: 0,
-          background: "rgba(0,0,0,0.5)",
+          background: "var(--overlay-dim)",
           backdropFilter: "blur(4px)",
           opacity: isOpen ? 1 : 0,
           transition: "opacity 0.3s ease",
@@ -79,16 +82,16 @@ export default function ApplicationModal({
       {/* Sheet */}
       <div
         style={{
-          backgroundColor: "white",
+          backgroundColor: "var(--surface-white)",
           width: "100%",
           maxWidth: "480px",
-          borderTopLeftRadius: "24px",
-          borderTopRightRadius: "24px",
-          padding: "32px 24px 40px",
+          borderTopLeftRadius: "var(--radius-card)",
+          borderTopRightRadius: "var(--radius-card)",
+          padding: "var(--space-8) var(--space-6) var(--space-10)",
           transform: isOpen ? "translateY(0)" : "translateY(100%)",
           transition: "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
           position: "relative",
-          boxShadow: "0 -10px 40px rgba(0,0,0,0.1)",
+          boxShadow: "0 -10px 40px rgba(0,0,0,0.1)", // Could be a token --shadow-sheet
         }}
       >
         {/* Drag Handle */}
@@ -96,7 +99,7 @@ export default function ApplicationModal({
           style={{
             width: "40px",
             height: "4px",
-            background: "#E5E7EB",
+            background: "var(--neutral-200)",
             borderRadius: "2px",
             margin: "-10px auto 24px",
           }}
@@ -105,17 +108,26 @@ export default function ApplicationModal({
         <h2
           style={{
             fontSize: "1.25rem",
-            fontWeight: "800",
-            color: "#111827",
-            marginBottom: "8px",
+            fontWeight: "var(--weight-bold)",
+            color: "var(--neutral-900)",
+            marginBottom: "var(--space-2)",
           }}
         >
           지원하기
         </h2>
         <p
-          style={{ fontSize: "0.9rem", color: "#6B7280", marginBottom: "24px" }}
+          style={{
+            fontSize: "0.9rem",
+            color: "var(--text-grey)",
+            marginBottom: "var(--space-6)",
+          }}
         >
-          <span style={{ fontWeight: "600", color: "#4F46E5" }}>
+          <span
+            style={{
+              fontWeight: "var(--weight-semibold)",
+              color: "var(--primary-600)",
+            }}
+          >
             {questTitle}
           </span>{" "}
           퀘스트에 지원합니다.
@@ -130,15 +142,15 @@ export default function ApplicationModal({
           style={{
             width: "100%",
             height: "120px",
-            padding: "16px",
-            borderRadius: "16px",
-            border: "1px solid #E5E7EB",
-            background: "#F9FAFB",
-            fontSize: "1rem",
-            color: "#111827",
+            padding: "var(--space-4)",
+            borderRadius: "var(--radius-button)",
+            border: "1px solid var(--neutral-200)",
+            background: "var(--neutral-50)",
+            fontSize: "var(--text-base)",
+            color: "var(--neutral-900)",
             resize: "none",
             outline: "none",
-            marginBottom: "24px",
+            marginBottom: "var(--space-6)",
             fontFamily: "inherit",
           }}
         />
@@ -148,13 +160,15 @@ export default function ApplicationModal({
           disabled={isSubmitting}
           style={{
             width: "100%",
-            padding: "16px",
-            borderRadius: "16px",
+            padding: "var(--space-4)",
+            borderRadius: "var(--radius-button)",
             border: "none",
-            background: isSubmitting ? "#E5E7EB" : "var(--primary-gradient)",
-            color: isSubmitting ? "#9CA3AF" : "white",
-            fontWeight: "700",
-            fontSize: "1rem",
+            background: isSubmitting
+              ? "var(--neutral-200)"
+              : "var(--primary-gradient)",
+            color: isSubmitting ? "var(--neutral-400)" : "var(--surface-white)",
+            fontWeight: "var(--weight-bold)",
+            fontSize: "var(--text-base)",
             cursor: isSubmitting ? "not-allowed" : "pointer",
             transform: isSubmitting ? "scale(0.98)" : "scale(1)",
             transition: "all 0.2s",

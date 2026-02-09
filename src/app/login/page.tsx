@@ -42,8 +42,8 @@ function LoginContent() {
           alignItems: "center",
           justifyContent: "center",
           borderRadius: "50%",
-          background: "#F3F4F6",
-          color: "#4B5563",
+          background: "var(--neutral-100)",
+          color: "var(--neutral-600)",
           border: "none",
           cursor: "pointer",
           fontSize: "1.2rem",
@@ -63,7 +63,7 @@ function LoginContent() {
         >
           <Logo width={140} height={46} priority />
         </div>
-        <p style={{ color: "#6B7280", fontSize: "1rem" }}>
+        <p style={{ color: "var(--text-grey)", fontSize: "var(--text-base)" }}>
           퀘스트를 깨고 수익을 올려보세요! 🚀
         </p>
       </div>
@@ -84,15 +84,15 @@ function LoginContent() {
             width: "100%",
             padding: "18px",
             borderRadius: "14px",
-            border: "1px solid #F3F4F6",
-            background: "white",
+            border: "1px solid var(--neutral-100)",
+            background: "var(--surface-white)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             gap: "12px",
-            fontSize: "1rem",
-            fontWeight: "700",
-            color: "#1F2937",
+            fontSize: "var(--text-base)",
+            fontWeight: "var(--weight-bold)",
+            color: "var(--text-dark)",
             cursor: "pointer",
             boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
             transition: "all 0.2s",
@@ -109,15 +109,15 @@ function LoginContent() {
             width: "100%",
             padding: "18px",
             borderRadius: "14px",
-            border: "1px solid #F3F4F6",
-            background: "white",
+            border: "1px solid var(--neutral-100)",
+            background: "var(--surface-white)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             gap: "12px",
-            fontSize: "1rem",
-            fontWeight: "700",
-            color: "#1F2937",
+            fontSize: "var(--text-base)",
+            fontWeight: "var(--weight-bold)",
+            color: "var(--text-dark)",
             cursor: "pointer",
             boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
             transition: "all 0.2s",
@@ -133,21 +133,21 @@ function LoginContent() {
         style={{
           marginTop: "32px",
           fontSize: "0.8rem",
-          color: "#9CA3AF",
+          color: "var(--neutral-400)",
           textAlign: "center",
         }}
       >
         계속 진행하면{" "}
         <Link
           href="/profile/notices"
-          style={{ textDecoration: "underline", color: "#6B7280" }}
+          style={{ textDecoration: "underline", color: "var(--text-grey)" }}
         >
           이용약관
         </Link>{" "}
         및{" "}
         <Link
           href="/profile/privacy"
-          style={{ textDecoration: "underline", color: "#6B7280" }}
+          style={{ textDecoration: "underline", color: "var(--text-grey)" }}
         >
           개인정보 처리방침
         </Link>

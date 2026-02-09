@@ -78,7 +78,7 @@ function OnboardingContent() {
       className="container"
       style={{
         minHeight: "100vh",
-        background: "#FFFFFF",
+        background: "var(--surface-white)",
         display: "flex", // Robust Flex Layout
         flexDirection: "column",
         alignItems: "center",
@@ -104,7 +104,7 @@ function OnboardingContent() {
         style={{
           flex: 1,
           width: "100%",
-          padding: "0 24px 40px", // Consistent Horizontal Padding
+          padding: "0 var(--space-6) var(--space-10)", // Consistent Horizontal Padding
           display: "flex",
           flexDirection: "column",
           maxWidth: "480px", // Safety cap for desktop view
@@ -126,7 +126,8 @@ function OnboardingContent() {
               flex: 1,
               height: "4px",
               borderRadius: "4px",
-              background: step >= 1 ? "#6366F1" : "#F3F4F6",
+              background:
+                step >= 1 ? "var(--text-accent)" : "var(--neutral-100)",
               transition: "background 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
             }}
           />
@@ -135,7 +136,8 @@ function OnboardingContent() {
               flex: 1,
               height: "4px",
               borderRadius: "4px",
-              background: step >= 2 ? "#6366F1" : "#F3F4F6",
+              background:
+                step >= 2 ? "var(--text-accent)" : "var(--neutral-100)",
               transition: "background 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
             }}
           />
@@ -381,35 +383,36 @@ function OnboardingContent() {
 }
 
 // Design System Styles (Reusable & Token-based)
+// Design System Styles (Reusable & Token-based)
 const h2Style: React.CSSProperties = {
-  fontSize: "1.75rem",
-  fontWeight: "800",
-  color: "#111827",
-  marginBottom: "12px",
+  fontSize: "var(--text-3xl)",
+  fontWeight: "var(--weight-bold)", // 800 -> 700 (bold) or add 800 to globals if strict
+  color: "var(--text-dark)",
+  marginBottom: "var(--space-3)",
   lineHeight: "1.3",
   letterSpacing: "-0.01em",
 };
 
 const subtextStyle: React.CSSProperties = {
-  fontSize: "1.05rem",
-  color: "#6B7280",
+  fontSize: "1.05rem", // Should ideally be a token, but let's keep it close
+  color: "var(--text-grey)",
   lineHeight: "1.6",
 };
 
 const labelStyle: React.CSSProperties = {
   display: "block",
-  marginBottom: "8px",
-  fontWeight: "600",
+  marginBottom: "var(--space-2)",
+  fontWeight: "var(--weight-semibold)",
   fontSize: "0.95rem",
-  color: "#374151",
+  color: "var(--text-dark)", // Was #374151
   letterSpacing: "-0.01em",
 };
 
 const commonInputStyle: React.CSSProperties = {
   width: "100%",
-  padding: "16px 20px",
-  borderRadius: "16px",
-  fontSize: "1rem",
+  padding: "var(--space-4) var(--space-5)",
+  borderRadius: "var(--radius-button)",
+  fontSize: "var(--text-base)",
   lineHeight: "1.5",
   outline: "none",
   transition: "border-color 0.2s, box-shadow 0.2s, background-color 0.2s",
@@ -419,40 +422,40 @@ const disabledInputWrapperStyle: React.CSSProperties = {
   position: "relative",
   display: "flex",
   alignItems: "center",
-  background: "#F9FAFB",
-  borderRadius: "16px",
-  border: "1px solid #E5E7EB",
-  paddingRight: "16px",
+  background: "var(--neutral-50)",
+  borderRadius: "var(--radius-button)",
+  border: "1px solid var(--neutral-200)",
+  paddingRight: "var(--space-4)",
 };
 
 const disabledInputStyle: React.CSSProperties = {
   ...commonInputStyle,
   border: "none",
   background: "transparent",
-  color: "#9CA3AF",
+  color: "var(--text-light)",
   cursor: "not-allowed",
   flex: 1,
 };
 
 const activeInputStyle: React.CSSProperties = {
   ...commonInputStyle,
-  border: "1px solid #E5E7EB",
-  background: "#FFFFFF",
-  color: "#1F2937",
-  boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+  border: "1px solid var(--neutral-200)",
+  background: "var(--surface-white)",
+  color: "var(--text-dark)",
+  boxShadow: "var(--shadow-sm)",
 };
 
 const primaryButtonStyle: React.CSSProperties = {
   width: "100%",
-  padding: "20px",
-  borderRadius: "18px",
-  background: "linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)",
-  color: "white",
-  fontWeight: "700",
+  padding: "var(--space-5)",
+  borderRadius: "18px", // Custom radius, keep or map to --radius-button? Let's map to radius-card (24) or just 18px if critical. Replacing with 18px hardcode to be safe or nearby token.
+  background: "var(--primary-gradient)",
+  color: "var(--surface-white)",
+  fontWeight: "var(--weight-bold)",
   fontSize: "1.1rem",
   border: "none",
   cursor: "pointer",
-  boxShadow: "0 10px 25px -5px rgba(79, 70, 229, 0.4)",
+  boxShadow: "0 10px 25px -5px rgba(79, 70, 229, 0.4)", // This is comples shadow, keep hardcoded or define --shadow-glow-large
   transition: "transform 0.1s active",
 };
 
@@ -460,9 +463,9 @@ const secondaryButtonStyle: React.CSSProperties = {
   width: "100%",
   padding: "18px",
   background: "transparent",
-  color: "#6B7280",
-  fontWeight: "600",
-  fontSize: "1rem",
+  color: "var(--text-grey)",
+  fontWeight: "var(--weight-semibold)",
+  fontSize: "var(--text-base)",
   border: "none",
   cursor: "pointer",
   transition: "color 0.2s",
@@ -470,39 +473,39 @@ const secondaryButtonStyle: React.CSSProperties = {
 
 const dashedButtonStyle: React.CSSProperties = {
   width: "100%",
-  padding: "16px",
-  borderRadius: "16px",
-  border: "2px dashed #E5E7EB",
+  padding: "var(--space-4)",
+  borderRadius: "var(--radius-button)",
+  border: "2px dashed var(--neutral-200)",
   background: "transparent",
-  color: "#6B7280",
-  fontWeight: "600",
-  fontSize: "1rem",
+  color: "var(--text-grey)",
+  fontWeight: "var(--weight-semibold)",
+  fontSize: "var(--text-base)",
   cursor: "pointer",
   transition: "all 0.2s",
-  marginTop: "8px",
+  marginTop: "var(--space-2)",
 };
 
 const iconButtonStyle: React.CSSProperties = {
   width: "56px",
-  height: "56px", // Match input height roughly
+  height: "56px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  borderRadius: "16px",
-  border: "1px solid #FEE2E2",
-  background: "#FEF2F2",
-  color: "#EF4444",
+  borderRadius: "var(--radius-button)",
+  border: "1px solid var(--status-error-bg)", // Or light red
+  background: "var(--status-error-bg)",
+  color: "var(--status-error)",
   cursor: "pointer",
   fontSize: "1.2rem",
   flexShrink: 0,
 };
 
 const warningBoxStyle: React.CSSProperties = {
-  background: "#FFFBEB", // Amber-50 (Warn)
-  border: "1px solid #FEF3C7", // Amber-100
-  borderRadius: "14px",
-  padding: "12px 16px", // Compact padding
-  marginBottom: "32px",
+  background: "var(--status-warn-bg)",
+  border: "1px solid var(--status-warn-border)", // Was #FEF3C7 but used border token
+  borderRadius: "var(--radius-md)",
+  padding: "12px 16px",
+  marginBottom: "var(--space-8)",
   display: "flex",
   gap: "10px",
   alignItems: "flex-start",

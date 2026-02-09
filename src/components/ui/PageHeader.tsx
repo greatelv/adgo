@@ -14,7 +14,7 @@ export default function PageHeader({
   style,
 }: PageHeaderProps) {
   return (
-    <div style={{ padding: "0 24px 24px", ...style }}>
+    <div style={{ padding: "0 var(--space-6) var(--space-6)", ...style }}>
       <div
         style={{
           display: "flex",
@@ -25,17 +25,23 @@ export default function PageHeader({
         <div>
           <h1
             style={{
-              fontSize: "1.5rem",
-              fontWeight: "800",
-              color: "#111827",
-              marginBottom: "8px",
+              fontSize: "var(--text-2xl)",
+              fontWeight: "var(--weight-bold)",
+              color: "var(--neutral-900)",
+              marginBottom: "var(--space-2)",
               margin: 0,
             }}
           >
             {title}
           </h1>
           {description && (
-            <p style={{ color: "#6B7280", marginTop: "8px", marginBottom: 0 }}>
+            <p
+              style={{
+                color: "var(--text-grey)",
+                marginTop: "var(--space-2)",
+                marginBottom: 0,
+              }}
+            >
               {description}
             </p>
           )}

@@ -6,7 +6,7 @@ export const MenuIcon = () => (
     height="24"
     viewBox="0 0 24 24"
     fill="none"
-    stroke="#111827"
+    stroke="var(--neutral-900)"
     strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -24,7 +24,7 @@ export const NotificationIcon = () => (
       height="24"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="#111827"
+      stroke="var(--neutral-900)"
       strokeWidth="2.5"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -39,9 +39,9 @@ export const NotificationIcon = () => (
         right: 2,
         width: "10px",
         height: "10px",
-        background: "#EF4444",
+        background: "var(--status-error)",
         borderRadius: "50%",
-        border: "2px solid white",
+        border: "2px solid var(--surface-white)",
       }}
     ></div>
   </div>

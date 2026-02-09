@@ -93,11 +93,11 @@ export default function QuestCard({
           {platform && (
             <span
               style={{
-                fontSize: "0.75rem",
-                fontWeight: "600",
-                color: "#4B5563",
-                background: "#F3F4F6",
-                padding: "4px 8px",
+                fontSize: "var(--text-xs)",
+                fontWeight: "var(--weight-semibold)",
+                color: "var(--badge-neutral-txt)",
+                background: "var(--badge-neutral-bg)",
+                padding: "4px var(--space-2)",
                 borderRadius: "6px",
               }}
             >
@@ -107,11 +107,11 @@ export default function QuestCard({
           {questType && (
             <span
               style={{
-                fontSize: "0.75rem",
-                fontWeight: "600",
-                color: "#6D28D9",
-                background: "#EDE9FE", // Light purple
-                padding: "4px 8px",
+                fontSize: "var(--text-xs)",
+                fontWeight: "var(--weight-semibold)",
+                color: "var(--badge-brand-txt)",
+                background: "var(--badge-brand-bg)", // Light purple
+                padding: "4px var(--space-2)",
                 borderRadius: "6px",
               }}
             >

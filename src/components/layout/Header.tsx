@@ -11,7 +11,10 @@ export default function Header() {
   const { isLoggedIn } = useAuth();
 
   return (
-    <header className="header-section" style={{ padding: "16px 24px" }}>
+    <header
+      className="header-section"
+      style={{ padding: "var(--space-4) var(--space-6)" }}
+    >
       {isLoggedIn ? (
         <>
           {/* Left: Logo */}
@@ -21,7 +24,7 @@ export default function Header() {
               display: "flex",
               alignItems: "center",
               position: "relative",
-              zIndex: 10,
+              zIndex: "var(--z-elevated)",
             }}
           >
             <Logo width={72} height={24} priority />
@@ -36,23 +39,23 @@ export default function Header() {
               position: "absolute",
               left: "50%",
               transform: "translateX(-50%)",
-              zIndex: 0,
+              zIndex: "var(--z-base)",
             }}
           >
             <span
               style={{
-                fontSize: "0.85rem",
+                fontSize: "var(--text-sm)",
                 color: "var(--text-grey)",
-                fontWeight: "500",
+                fontWeight: "var(--weight-medium)",
               }}
             >
               현재 포인트
             </span>
             <span
               style={{
-                fontSize: "1.25rem",
-                fontWeight: "800",
-                color: "#111827",
+                fontSize: "var(--text-xl)",
+                fontWeight: "var(--weight-bold)",
+                color: "var(--neutral-900)",
               }}
             >
               35,000 P
@@ -62,7 +65,11 @@ export default function Header() {
           {/* Right: Notification */}
           <Link
             href="/notifications"
-            style={{ marginLeft: "auto", position: "relative", zIndex: 10 }}
+            style={{
+              marginLeft: "auto",
+              position: "relative",
+              zIndex: "var(--z-elevated)",
+            }}
           >
             <NotificationIcon />
           </Link>
@@ -80,13 +87,13 @@ export default function Header() {
             style={{
               marginLeft: "auto",
               textDecoration: "none",
-              color: "white",
-              fontWeight: "600",
+              color: "var(--surface-white)",
+              fontWeight: "var(--weight-semibold)",
               fontSize: "0.9rem",
-              background: "linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%)",
-              padding: "8px 18px",
-              borderRadius: "99px",
-              boxShadow: "0 4px 12px rgba(99, 102, 241, 0.3)",
+              background: "var(--primary-gradient)",
+              padding: "var(--space-2) 18px",
+              borderRadius: "var(--radius-pill)",
+              boxShadow: "0 4px 12px rgba(99, 102, 241, 0.3)", // Complex shadow, keep or define token
               transition: "transform 0.2s",
               display: "flex", // Keep flex to align text nicely if needed
               alignItems: "center",

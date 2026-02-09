@@ -35,11 +35,11 @@ export default function ProfilePage() {
       <Header />
 
       {/* Mode Switcher */}
-      <div style={{ padding: "0 24px 16px" }}>
+      <div style={{ padding: "0 var(--space-6) var(--space-4)" }}>
         <div
           style={{
-            background: "#F3F4F6",
-            borderRadius: "12px",
+            background: "var(--neutral-100)",
+            borderRadius: "var(--radius-md)",
             padding: "4px",
             display: "flex",
           }}
@@ -48,13 +48,13 @@ export default function ProfilePage() {
             style={{
               flex: 1,
               padding: "10px",
-              borderRadius: "8px",
+              borderRadius: "var(--radius-sm)",
               border: "none",
-              background: "white",
-              color: "#111827",
-              fontWeight: "700",
+              background: "var(--surface-white)",
+              color: "var(--neutral-900)",
+              fontWeight: "var(--weight-bold)",
               fontSize: "0.95rem",
-              boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
+              boxShadow: "var(--shadow-sm)",
               cursor: "default",
             }}
           >
@@ -69,11 +69,11 @@ export default function ProfilePage() {
             style={{
               flex: 1,
               padding: "10px",
-              borderRadius: "8px",
+              borderRadius: "var(--radius-sm)",
               border: "none",
               background: "transparent",
-              color: "#9CA3AF",
-              fontWeight: "600",
+              color: "var(--neutral-400)",
+              fontWeight: "var(--weight-semibold)",
               fontSize: "0.95rem",
               cursor: "pointer",
             }}
@@ -86,13 +86,13 @@ export default function ProfilePage() {
       <PageHeader title="마이페이지" description="내 활동 내역을 확인하세요." />
 
       {/* User Profile Card */}
-      <section style={{ padding: "0 24px 32px" }}>
+      <section style={{ padding: "0 var(--space-6) var(--space-8)" }}>
         <Card
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "20px",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
+            gap: "var(--space-5)",
+            boxShadow: "var(--shadow-card)",
           }}
         >
           <div
@@ -100,50 +100,64 @@ export default function ProfilePage() {
               width: "72px",
               height: "72px",
               borderRadius: "50%",
-              background: "linear-gradient(135deg, #4F46E5 0%, #818CF8 100%)",
+              background: "var(--primary-gradient)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "white",
+              color: "var(--surface-white)",
               fontSize: "1.5rem",
-              fontWeight: "800",
-              boxShadow: "0 8px 16px rgba(79, 70, 229, 0.3)",
+              fontWeight: "var(--weight-bold)",
+              boxShadow: "var(--shadow-glow)",
             }}
           >
             K
           </div>
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "var(--space-2)",
+              }}
+            >
               <h2
                 style={{
-                  fontSize: "1.25rem",
-                  fontWeight: "800",
+                  fontSize: "var(--text-xl)",
+                  fontWeight: "var(--weight-bold)",
                   margin: 0,
-                  color: "#111827",
+                  color: "var(--neutral-900)",
                 }}
               >
                 {user.name} 님
               </h2>
               <span
                 style={{
-                  fontSize: "0.75rem",
-                  padding: "4px 8px",
-                  background: "#EFF6FF",
-                  color: "#3B82F6",
+                  fontSize: "var(--text-xs)",
+                  padding: "4px var(--space-2)",
+                  background: "var(--primary-50)",
+                  color: "var(--primary-600)",
                   borderRadius: "100px",
-                  fontWeight: "700",
+                  fontWeight: "var(--weight-bold)",
                 }}
               >
                 Lv. 3
               </span>
             </div>
             <div
-              style={{ fontSize: "0.9rem", color: "#6B7280", marginTop: "4px" }}
+              style={{
+                fontSize: "0.9rem",
+                color: "var(--text-grey)",
+                marginTop: "4px",
+              }}
             >
               {user.grade}
             </div>
             <div
-              style={{ fontSize: "0.8rem", color: "#9CA3AF", marginTop: "2px" }}
+              style={{
+                fontSize: "0.8rem",
+                color: "var(--neutral-400)",
+                marginTop: "2px",
+              }}
             >
               가입일 {user.joinDate}
             </div>
@@ -152,38 +166,54 @@ export default function ProfilePage() {
       </section>
 
       {/* Stats Grid */}
-      <section style={{ padding: "0 24px 32px", display: "flex", gap: "12px" }}>
+      <section
+        style={{
+          padding: "0 var(--space-6) var(--space-8)",
+          display: "flex",
+          gap: "var(--space-3)",
+        }}
+      >
         <StatCard
           label="완료한 퀘스트"
           value={`${user.stats.completedQuests}개`}
-          color="#4F46E5"
+          color="var(--primary-600)"
         />
         <StatCard
           label="누적 수익금"
           value={`${user.stats.totalEarnings} P`}
-          color="#111827"
+          color="var(--neutral-900)"
         />
       </section>
 
       {/* My Quests */}
-      <section style={{ padding: "0 0 40px" }}>
+      <section style={{ padding: "0 0 var(--space-10)" }}>
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            marginBottom: "16px",
-            padding: "0 24px", // Add padding to title only
+            marginBottom: "var(--space-4)",
+            padding: "0 var(--space-6)", // Add padding to title only
           }}
         >
           <h3
-            style={{ fontSize: "1.1rem", fontWeight: "700", color: "#111827" }}
+            style={{
+              fontSize: "1.1rem",
+              fontWeight: "var(--weight-bold)",
+              color: "var(--neutral-900)",
+            }}
           >
             진행 중인 퀘스트
           </h3>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--space-2)",
+          }}
+        >
           {myQuests.map((quest) => (
             <Link
               key={quest.id}
@@ -210,13 +240,13 @@ export default function ProfilePage() {
       </section>
 
       {/* Menu List */}
-      <section style={{ padding: "0 24px" }}>
+      <section style={{ padding: "0 var(--space-6)" }}>
         <div
           style={{
-            background: "white",
-            borderRadius: "20px",
-            padding: "8px 0",
-            boxShadow: "0 4px 20px rgba(0,0,0,0.02)",
+            background: "var(--surface-white)",
+            borderRadius: "var(--radius-button)",
+            padding: "var(--space-2) 0",
+            boxShadow: "var(--shadow-sm)",
           }}
         >
           <Link href="/profile/notices" style={{ textDecoration: "none" }}>
@@ -229,7 +259,11 @@ export default function ProfilePage() {
             <MenuRow icon="💬" label="1:1 문의하기" />
           </Link>
           <div
-            style={{ height: "1px", background: "#F3F4F6", margin: "8px 24px" }}
+            style={{
+              height: "1px",
+              background: "var(--neutral-100)",
+              margin: "var(--space-2) var(--space-6)",
+            }}
           ></div>
           <Link href="/profile/settings" style={{ textDecoration: "none" }}>
             <MenuRow icon="⚙️" label="앱 설정" />
@@ -241,9 +275,9 @@ export default function ProfilePage() {
         <div
           style={{
             textAlign: "center",
-            marginTop: "32px",
-            color: "#D1D5DB",
-            fontSize: "0.8rem",
+            marginTop: "var(--space-8)",
+            color: "var(--neutral-300)",
+            fontSize: "var(--text-xs)",
           }}
         >
           회원 탈퇴 | 로그아웃
@@ -268,20 +302,30 @@ function StatCard({
     <div
       style={{
         flex: 1,
-        background: "#F9FAFB",
-        borderRadius: "16px",
-        padding: "16px",
+        background: "var(--neutral-50)",
+        borderRadius: "var(--radius-button)",
+        padding: "var(--space-4)",
         display: "flex",
         flexDirection: "column",
-        gap: "8px",
+        gap: "var(--space-2)",
       }}
     >
       <span
-        style={{ fontSize: "0.85rem", color: "#6B7280", fontWeight: "500" }}
+        style={{
+          fontSize: "0.85rem",
+          color: "var(--text-grey)",
+          fontWeight: "var(--weight-medium)",
+        }}
       >
         {label}
       </span>
-      <span style={{ fontSize: "1.1rem", fontWeight: "800", color: color }}>
+      <span
+        style={{
+          fontSize: "1.1rem",
+          fontWeight: "var(--weight-bold)",
+          color: color,
+        }}
+      >
         {value}
       </span>
     </div>
@@ -292,19 +336,25 @@ function MenuRow({ icon, label }: { icon: string; label: string }) {
   return (
     <div
       style={{
-        padding: "16px 24px",
+        padding: "var(--space-4) var(--space-6)",
         display: "flex",
         alignItems: "center",
-        gap: "16px",
+        gap: "var(--space-4)",
         cursor: "pointer",
         transition: "background 0.2s",
       }}
     >
       <span style={{ fontSize: "1.2rem" }}>{icon}</span>
-      <span style={{ fontSize: "1rem", fontWeight: "500", color: "#374151" }}>
+      <span
+        style={{
+          fontSize: "1rem",
+          fontWeight: "var(--weight-medium)",
+          color: "var(--neutral-700)",
+        }}
+      >
         {label}
       </span>
-      <span style={{ marginLeft: "auto", color: "#D1D5DB" }}>›</span>
+      <span style={{ marginLeft: "auto", color: "var(--neutral-300)" }}>›</span>
     </div>
   );
 }

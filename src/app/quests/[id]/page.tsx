@@ -44,11 +44,11 @@ export default function QuestDetail() {
           onClick={() => router.push("/")}
           style={{
             padding: "10px 20px",
-            background: "#4F46E5",
-            color: "white",
-            borderRadius: "8px",
+            background: "var(--primary-600)",
+            color: "var(--surface-white)",
+            borderRadius: "var(--radius-sm)",
             border: "none",
-            fontWeight: "600",
+            fontWeight: "var(--weight-semibold)",
           }}
         >
           메인으로 돌아가기
@@ -90,14 +90,14 @@ export default function QuestDetail() {
       {/* Sticky Header with Blur */}
       <div
         style={{
-          padding: "16px 24px",
+          padding: "var(--space-4) var(--space-6)",
           display: "flex",
           alignItems: "center",
-          gap: "12px",
+          gap: "var(--space-3)",
           position: "sticky",
           top: 0,
-          zIndex: 40,
-          background: "rgba(243, 232, 255, 0.7)",
+          zIndex: "var(--z-fixed)",
+          background: "var(--surface-translucent)",
           backdropFilter: "blur(10px)",
           borderBottom: "1px solid rgba(255,255,255,0.3)",
         }}
@@ -182,7 +182,7 @@ export default function QuestDetail() {
                 fontWeight: "800",
                 lineHeight: "1.3",
                 margin: 0,
-                color: "#111827",
+                color: "var(--neutral-900)",
                 letterSpacing: "-0.5px",
               }}
             >
@@ -198,10 +198,10 @@ export default function QuestDetail() {
               flex: 1,
               padding: "20px",
               borderRadius: "20px",
-              background: "rgba(255,255,255,0.7)",
+              background: "var(--surface-translucent)",
               backdropFilter: "blur(8px)",
               border: "1px solid rgba(255,255,255,0.6)",
-              boxShadow: "0 4px 15px -4px rgba(0,0,0,0.05)",
+              boxShadow: "var(--shadow-sm)",
             }}
           >
             <div
@@ -229,10 +229,10 @@ export default function QuestDetail() {
               flex: 1,
               padding: "20px",
               borderRadius: "20px",
-              background: "rgba(255,255,255,0.7)",
+              background: "var(--surface-translucent)",
               backdropFilter: "blur(8px)",
               border: "1px solid rgba(255,255,255,0.6)",
-              boxShadow: "0 4px 15px -4px rgba(0,0,0,0.05)",
+              boxShadow: "var(--shadow-sm)",
             }}
           >
             <div
@@ -307,7 +307,10 @@ export default function QuestDetail() {
       {/* Content Area */}
       <section
         className="content-area"
-        style={{ padding: "0 24px 24px", color: "#374151" }}
+        style={{
+          padding: "0 var(--space-6) var(--space-6)",
+          color: "var(--neutral-700)",
+        }}
       >
         <div dangerouslySetInnerHTML={{ __html: quest.description }} />
 
@@ -365,10 +368,10 @@ export default function QuestDetail() {
             padding: "16px",
             borderRadius: "16px",
             border: "none",
-            background: "#F3F4F6",
-            color: "#4B5563",
-            fontWeight: "700",
-            fontSize: "1rem",
+            background: "var(--neutral-100)",
+            color: "var(--neutral-600)",
+            fontWeight: "var(--weight-bold)",
+            fontSize: "var(--text-base)",
             cursor: "pointer",
             transition: "all 0.2s",
           }}
@@ -384,10 +387,10 @@ export default function QuestDetail() {
               padding: "16px",
               borderRadius: "16px",
               border: "none",
-              background: "#E5E7EB",
-              color: "#9CA3AF",
-              fontWeight: "700",
-              fontSize: "1rem",
+              background: "var(--neutral-200)",
+              color: "var(--neutral-400)",
+              fontWeight: "var(--weight-bold)",
+              fontSize: "var(--text-base)",
               cursor: "not-allowed",
             }}
           >
@@ -407,10 +410,10 @@ export default function QuestDetail() {
               padding: "16px",
               borderRadius: "16px",
               border: "none",
-              background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
-              color: "white",
-              fontWeight: "700",
-              fontSize: "1rem",
+              background: "var(--primary-gradient)",
+              color: "var(--surface-white)",
+              fontWeight: "var(--weight-bold)",
+              fontSize: "var(--text-base)",
               boxShadow: "0 8px 20px -4px rgba(99, 102, 241, 0.4)",
               cursor: "pointer",
               transition: "transform 0.2s",

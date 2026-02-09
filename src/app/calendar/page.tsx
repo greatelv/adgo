@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import Header from "../../components/layout/Header";
 import BottomNav from "../../components/layout/BottomNav";
 import PageHeader from "../../components/ui/PageHeader";
@@ -191,8 +190,8 @@ export default function CalendarPage() {
                 key={d}
                 style={{
                   fontSize: "0.85rem",
-                  fontWeight: "600",
-                  color: i === 0 ? "#EF4444" : "#9CA3AF",
+                  fontWeight: "var(--weight-semibold)",
+                  color: i === 0 ? "var(--status-error)" : "var(--neutral-400)",
                 }}
               >
                 {d}
@@ -228,11 +227,18 @@ export default function CalendarPage() {
                     justifyContent: "center",
                     cursor: "pointer",
                     position: "relative",
-                    borderRadius: "12px",
-                    background: isSelected ? "#EEF2FF" : "transparent",
-                    color: isSelected ? "#4F46E5" : "#374151",
-                    fontWeight: isSelected || isToday ? "700" : "500",
-                    border: isToday ? "1px solid #4F46E5" : "none",
+                    borderRadius: "var(--radius-md)",
+                    background: isSelected
+                      ? "var(--primary-50)"
+                      : "transparent",
+                    color: isSelected
+                      ? "var(--primary-600)"
+                      : "var(--neutral-700)",
+                    fontWeight:
+                      isSelected || isToday
+                        ? "var(--weight-bold)"
+                        : "var(--weight-medium)",
+                    border: isToday ? "1px solid var(--primary-600)" : "none",
                   }}
                 >
                   <span>{day}</span>
@@ -249,10 +255,10 @@ export default function CalendarPage() {
                           borderRadius: "50%",
                           background:
                             s.type === "deadline"
-                              ? "#EF4444"
+                              ? "var(--status-error)"
                               : s.type === "completed"
-                                ? "#10B981"
-                                : "#3B82F6",
+                                ? "var(--status-success)"
+                                : "var(--status-info)",
                         }}
                       ></div>
                     ))}
@@ -287,9 +293,9 @@ export default function CalendarPage() {
                 style={{
                   padding: "16px",
                   borderRadius: "16px",
-                  background: "white",
+                  background: "var(--surface-white)",
                   boxShadow: "0 2px 10px rgba(0,0,0,0.03)",
-                  borderLeft: `4px solid ${s.type === "deadline" ? "#EF4444" : s.type === "completed" ? "#10B981" : "#3B82F6"}`,
+                  borderLeft: `4px solid ${s.type === "deadline" ? "var(--status-error)" : s.type === "completed" ? "var(--status-success)" : "var(--status-info)"}`,
                 }}
               >
                 <div

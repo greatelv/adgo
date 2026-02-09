@@ -1,10 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import Header from "../../components/layout/Header";
 import BottomNav from "../../components/layout/BottomNav";
-import FilterChip from "../../components/ui/FilterChip";
 import PageHeader from "../../components/ui/PageHeader";
 
 // Mock Transaction Data
@@ -70,11 +68,12 @@ export default function WalletPage() {
       <section style={{ padding: "0 24px 32px" }}>
         <div
           style={{
-            background: "linear-gradient(135deg, #111827 0%, #374151 100%)",
-            borderRadius: "24px",
+            background:
+              "linear-gradient(135deg, var(--neutral-900) 0%, var(--neutral-700) 100%)",
+            borderRadius: "var(--radius-card)",
             padding: "28px",
             boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
-            color: "white",
+            color: "var(--surface-white)",
             position: "relative",
             overflow: "hidden",
           }}
@@ -115,8 +114,8 @@ export default function WalletPage() {
               width: "100%",
               padding: "14px",
               borderRadius: "14px",
-              background: "white",
-              color: "#111827",
+              background: "var(--surface-white)",
+              color: "var(--neutral-900)",
               fontSize: "1rem",
               fontWeight: "700",
               border: "none",
@@ -141,8 +140,8 @@ export default function WalletPage() {
           <h3
             style={{
               fontSize: "1.1rem",
-              fontWeight: "700",
-              color: "#111827",
+              fontWeight: "var(--weight-bold)",
+              color: "var(--neutral-900)",
               margin: 0,
             }}
           >
@@ -158,9 +157,13 @@ export default function WalletPage() {
                   padding: "6px 12px",
                   borderRadius: "20px",
                   fontSize: "0.8rem",
-                  fontWeight: "600",
-                  background: filter === f ? "#111827" : "#F3F4F6",
-                  color: filter === f ? "white" : "#6B7280",
+                  fontWeight: "var(--weight-semibold)",
+                  background:
+                    filter === f ? "var(--neutral-900)" : "var(--neutral-100)",
+                  color:
+                    filter === f
+                      ? "var(--surface-white)"
+                      : "var(--neutral-500)",
                   cursor: "pointer",
                   transition: "all 0.2s",
                 }}
@@ -188,9 +191,15 @@ export default function WalletPage() {
                   style={{
                     width: "48px",
                     height: "48px",
-                    borderRadius: "16px",
-                    background: t.type === "earn" ? "#EEF2FF" : "#F3F4F6",
-                    color: t.type === "earn" ? "#4F46E5" : "#6B7280",
+                    borderRadius: "var(--radius-button)",
+                    background:
+                      t.type === "earn"
+                        ? "var(--primary-50)"
+                        : "var(--neutral-100)",
+                    color:
+                      t.type === "earn"
+                        ? "var(--primary-600)"
+                        : "var(--neutral-500)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -203,8 +212,8 @@ export default function WalletPage() {
                   <div
                     style={{
                       fontSize: "0.95rem",
-                      fontWeight: "600",
-                      color: "#1F2937",
+                      fontWeight: "var(--weight-semibold)",
+                      color: "var(--neutral-900)",
                       marginBottom: "4px",
                     }}
                   >
@@ -219,8 +228,11 @@ export default function WalletPage() {
                 <div
                   style={{
                     fontSize: "1rem",
-                    fontWeight: "700",
-                    color: t.type === "earn" ? "#4F46E5" : "#111827",
+                    fontWeight: "var(--weight-bold)",
+                    color:
+                      t.type === "earn"
+                        ? "var(--primary-600)"
+                        : "var(--neutral-900)",
                   }}
                 >
                   {t.amount > 0 ? "+" : ""}

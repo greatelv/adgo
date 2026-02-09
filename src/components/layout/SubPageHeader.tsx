@@ -15,15 +15,15 @@ export default function SubPageHeader({
   return (
     <div
       style={{
-        height: "56px", // Standard App Header Height
-        padding: "0 16px",
+        height: "var(--space-header)",
+        padding: "0 var(--space-4)",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center", // Center Title
+        justifyContent: "center",
         position: "sticky",
         top: 0,
-        zIndex: 40,
-        background: "rgba(255, 255, 255, 0.6)",
+        zIndex: "var(--z-fixed)",
+        background: "var(--surface-translucent)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
         borderBottom: "1px solid rgba(255, 255, 255, 0.3)",
@@ -39,11 +39,10 @@ export default function SubPageHeader({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "#1F2937",
-          borderRadius: "12px",
+          color: "var(--text-dark)",
+          borderRadius: "var(--radius-md)",
           transition: "background 0.2s",
         }}
-        // Add simple hover effect inline or via class if possible, kept simple for now
       >
         <svg
           width="24"
@@ -51,7 +50,7 @@ export default function SubPageHeader({
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2.5" // Slightly bolder
+          strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -62,8 +61,8 @@ export default function SubPageHeader({
       <span
         style={{
           fontSize: "1.15rem",
-          fontWeight: "700",
-          color: "#111827",
+          fontWeight: "var(--weight-bold)",
+          color: "var(--text-dark)",
           letterSpacing: "-0.01em",
         }}
       >

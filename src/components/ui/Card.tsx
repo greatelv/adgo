@@ -20,10 +20,10 @@ export default function Card({
       onClick={onClick}
       className={className}
       style={{
-        background: "white",
-        borderRadius: "24px",
+        background: "var(--surface-white)",
+        borderRadius: "var(--radius-card)",
         padding: padding,
-        boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+        boxShadow: "var(--shadow-card)",
         ...style,
       }}
     >

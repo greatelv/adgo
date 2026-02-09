@@ -36,10 +36,10 @@ export default function Home() {
       <h2
         style={{
           fontSize: "1.05rem",
-          fontWeight: "700",
-          color: "#374151",
-          margin: "0 0 12px",
-          padding: "0 24px",
+          fontWeight: "var(--weight-bold)",
+          color: "var(--neutral-700)",
+          margin: "0 0 var(--space-3)",
+          padding: "0 var(--space-6)",
         }}
       >
         어디서 활동하시나요?
@@ -108,7 +108,9 @@ export default function Home() {
                   }
                   progressValue={quest.progressValue || ""}
                   progressValueColor={
-                    quest.status === "URGENT" ? "#EC4899" : undefined
+                    quest.status === "URGENT"
+                      ? "var(--status-urgent)"
+                      : undefined
                   }
                   progressGradient={quest.colors.progressGradient}
                   isClosed={quest.status === "CLOSED"}
@@ -118,7 +120,11 @@ export default function Home() {
           })
         ) : (
           <div
-            style={{ textAlign: "center", padding: "40px", color: "#9CA3AF" }}
+            style={{
+              textAlign: "center",
+              padding: "var(--space-10)",
+              color: "var(--neutral-400)",
+            }}
           >
             해당하는 퀘스트가 없습니다. 😅
           </div>
