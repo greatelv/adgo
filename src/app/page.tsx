@@ -91,7 +91,7 @@ export default function Home() {
               >
                 <QuestCard
                   title={quest.title}
-                  platform={quest.platform}
+                  channel={quest.channel}
                   questType={quest.questType}
                   icon={IconComponent}
                   price={quest.reward}

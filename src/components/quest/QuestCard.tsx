@@ -3,11 +3,11 @@ import React, { ReactNode } from "react";
 interface QuestCardProps {
   title: string;
   // subtitle is replaced by tags logic
-  platform?: string;
+  channel?: string;
   questType?: string;
 
   icon: ReactNode;
-  price: string;
+  price: string; // Now a free text string (e.g. "3만원 상당")
   iconBg: string;
   iconColor: string;
   priceBg: string;
@@ -24,7 +24,7 @@ interface QuestCardProps {
 
 export default function QuestCard({
   title,
-  platform,
+  channel,
   questType,
   icon,
   price,
@@ -90,7 +90,7 @@ export default function QuestCard({
         }}
       >
         <div style={{ display: "flex", gap: "6px" }}>
-          {platform && (
+          {channel && (
             <span
               style={{
                 fontSize: "var(--text-xs)",
@@ -101,7 +101,7 @@ export default function QuestCard({
                 borderRadius: "6px",
               }}
             >
-              {platform}
+              {channel}
             </span>
           )}
           {questType && (

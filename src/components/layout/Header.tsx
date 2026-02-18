@@ -30,37 +30,7 @@ export default function Header() {
             <Logo width={72} height={24} priority />
           </Link>
 
-          {/* Center: Points */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              position: "absolute",
-              left: "50%",
-              transform: "translateX(-50%)",
-              zIndex: "var(--z-base)",
-            }}
-          >
-            <span
-              style={{
-                fontSize: "var(--text-sm)",
-                color: "var(--text-grey)",
-                fontWeight: "var(--weight-medium)",
-              }}
-            >
-              현재 포인트
-            </span>
-            <span
-              style={{
-                fontSize: "var(--text-xl)",
-                fontWeight: "var(--weight-bold)",
-                color: "var(--neutral-900)",
-              }}
-            >
-              35,000 P
-            </span>
-          </div>
+          {/* Center: Points - REMOVED for MVP Matching Platform */}
 
           {/* Right: Notification */}
           <Link

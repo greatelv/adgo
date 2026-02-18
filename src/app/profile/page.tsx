@@ -178,11 +178,7 @@ export default function ProfilePage() {
           value={`${user.stats.completedQuests}개`}
           color="var(--primary-600)"
         />
-        <StatCard
-          label="누적 수익금"
-          value={`${user.stats.totalEarnings} P`}
-          color="var(--neutral-900)"
-        />
+        {/* Total Earnings removed for Matching MVP */}
       </section>
 
       {/* My Quests */}
@@ -222,7 +218,7 @@ export default function ProfilePage() {
             >
               <QuestCard
                 title={quest.title}
-                platform={quest.platform}
+                channel={quest.channel}
                 questType={quest.questType}
                 icon={quest.category === "SNS" ? <TaskIcon2 /> : <TaskIcon1 />}
                 price={quest.reward}

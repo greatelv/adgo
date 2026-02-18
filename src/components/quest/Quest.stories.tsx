@@ -7,7 +7,7 @@ import { TaskIcon1, TaskIcon2 } from "../ui/Icons";
 export const QuestCards: Story = () => {
   const commonProps = {
     title: "신규 카페 오픈 리뷰 이벤트",
-    platform: "네이버 블로그",
+    channel: "네이버 블로그",
     questType: "리뷰 작성",
     price: "5,000 P",
     icon: <TaskIcon1 />,
@@ -38,7 +38,7 @@ export const QuestCards: Story = () => {
         {...commonProps}
         icon={<TaskIcon2 />}
         title="인스타그램 팔로우 미션"
-        platform="Instagram"
+        channel="Instagram"
         price="1,000 P"
         progressLabel="마감 임박"
         progressValue="95%"
